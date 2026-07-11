@@ -9,7 +9,7 @@ const SITE = {
   email: "ogabnunes@gmail.com",
   linkedin: "linkedin.com/in/ogabnunes",
   instagram: "@osupergab",
-  cv: "cv-seunome.pdf",
+  cv: "assets/curriculo.pdf",
 };
 
 const PROJECTS = [
