@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trabalho — [Seu Nome]</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <main class="main" id="main-content">
+      <!-- preenchido via JS -->
+    </main>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="components.js"></script>
+  <script>
+    window.ACTIVE_NAV = "trabalhos";
+
+    function getSlug() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("slug") || (PROJECTS[0] && PROJECTS[0].slug);
+    }
+
+    function imageWithCaption(src, caption) {
+      return `
+        <div class="phase-image-with-caption">
+          <img src="${src}" alt="${caption || ""}" loading="lazy">
+          ${caption ? `<p class="image-caption">${caption}</p>` : ""}
+        </div>
+      `;
+    }
+
+    function phaseVideo(src) {
+      return `
+        <div class="phase-video">
+          <video src="${src}" autoplay loop muted playsinline></video>
+        </div>
+      `;
+    }
+
+    function posterCarousel(project) {
+      if (!project || !project.gallery || !project.gallery.length) return "";
+      // itens duplicados para permitir o loop infinito sem emenda
+      const items = project.gallery.map((src, i) => `
+        <div class="poster-item"><img src="${src}" alt="${project.title} — cartaz ${ (i % project.gallery.length) + 1 }" loading="lazy"></div>
+      `).join("");
+      return `<div class="poster-carousel">
+        <div class="poster-track">
+          ${items}
+          ${items}
+        </div>
+      </div>`;
+    }
+
+    function phaseImages(phase, project) {
+      if (phase.image || (Array.isArray(phase.extraImages) && phase.extraImages.length)) {
+        let html = "";
+        if (phase.image) html += imageWithCaption(phase.image, phase.imageCaption);
+        if (Array.isArray(phase.extraImages)) {
+          html += phase.extraImages.map(item => imageWithCaption(item.image, item.caption)).join("");
+        }
+        return html;
+      }
+
+      if (phase.id === "contexto" && project && project.gallery && project.gallery.length) {
+        return posterCarousel(project);
+      }
+
+      if (phase.layout === "triple") {
+        return `<div class="image-row">
+          <div class="phase-image"></div>
+          <div class="phase-image"></div>
+          <div class="phase-image"></div>
+        </div>`;
+      }
+      return `<div class="phase-image"></div>`;
+    }
+
+    function renderPhaseBody(ph, project) {
+      if (ph.layout === "book") {
+        return `
+          <div class="phase-book">
+            <div class="phase-book-cover">
+              <img src="${ph.bookCover}" alt="Capa do livro Aurélia: A Dicionária da Língua Afiada">
+            </div>
+            <div class="phase-book-text">
+              <p>${ph.text}</p>
+            </div>
+          </div>
+        `;
+      }
+      return `
+        ${ph.text ? `<p>${ph.text}</p>` : ""}
+        ${ph.video ? phaseVideo(ph.video) : ""}
+        ${phaseImages(ph, project)}
+        ${ph.showGallery ? posterCarousel(project) : ""}
+      `;
+    }
+
+    function renderProject() {
+      const project = PROJECTS.find(p => p.slug === getSlug());
+      const main = document.getElementById("main-content");
+
+      if (!project) {
+        main.innerHTML = `<p class="meta-line">Projeto não encontrado. <a href="index.html" style="color:var(--teal)">Voltar</a></p>`;
+        return;
+      }
+
+      main.innerHTML = `
+        <a class="back-link" href="index.html">&larr; voltar</a>
+
+        <div class="project-header">
+          <p class="meta-line">${project.client} | ${project.year}</p>
+          <h1>${project.title}</h1>
+        </div>
+
+        <div class="project-body">
+          <nav class="phase-nav" id="phase-nav">
+            ${project.phases.map((ph, i) => `<a href="#${ph.id}" data-id="${ph.id}" class="${i === 0 ? "active" : ""}">${ph.label}</a>`).join("")}
+          </nav>
+
+          <div class="project-sections">
+            ${project.phases.map(ph => `
+              <section class="phase-section" id="${ph.id}">
+                <h2>${ph.heading}</h2>
+                ${renderPhaseBody(ph, project)}
+              </section>
+            `).join("")}
+            ${Array.isArray(project.downloads) && project.downloads.length ? `
+              <div class="downloads">
+                ${project.downloads.map(d => `<a class="download-btn" href="${d.file}" download>${d.label}</a>`).join("")}
+              </div>
+            ` : ""}
+          </div>
+        </div>
+      `;
+
+      setupScrollSpy(project.phases.map(ph => ph.id));
+    }
+
+    function setupScrollSpy(ids) {
+      const links = document.querySelectorAll(".phase-nav a");
+      const sections = ids.map(id => document.getElementById(id)).filter(Boolean);
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove("active"));
+            const match = document.querySelector(`.phase-nav a[data-id="${entry.target.id}"]`);
+            if (match) match.classList.add("active");
+          }
+        });
+      }, { rootMargin: "-20% 0px -70% 0px", threshold: 0 });
+
+      sections.forEach(s => observer.observe(s));
+    }
+
+    document.addEventListener("DOMContentLoaded", renderProject);
+  </script>
+</body>
+</html>
