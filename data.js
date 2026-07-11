@@ -47,7 +47,7 @@ const PROJECTS = [
       {
         id: "fase-2",
         label: "pesquisa",
-        heading: "Pesquisa",
+        heading: "alokinha",
         text: "Um dos principais direcionadores do estudo do Pajubá foi o <strong>Aurélia: A Dicionária da Língua Afiada</strong>, o primeiro registro lexicográfico do Pajubá, escrito pelo jornalista Vitor Angelo e o pesquisador Fred Libi, com mais de 140 páginas de verbetes e expressões populares usadas dentro da comunidade LGBTQ+, incluindo o pajubá. <br><br> O principal ponto de análise é o mapeamento do pajubá não só como dialeto, mas como uma linguagem de resistência entre travestis e mulheres trans. Sua estrutura interseccional, que funde o português com raízes africanas (iorubá/nagô) e indígenas (tupi) reflete a solidariedade entre grupos marginalizados.",
         layout: "book",
         bookCover: "assets/aurélia.avif",
