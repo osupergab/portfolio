@@ -4,11 +4,11 @@
 // ============================================================
 
 const SITE = {
-  name: "[Seu Nome]",
-  role: "designer de produto",
-  email: "ola@seudominio.com",
-  linkedin: "linkedin.com/in/seunome",
-  instagram: "@seunome",
+  name: "Gabriel Nunes",
+  role: "Designer",
+  email: "ogabnunes@gmail.com",
+  linkedin: "linkedin.com/in/ogabnunes",
+  instagram: "@osupergab",
   cv: "cv-seunome.pdf",
 };
 
@@ -197,19 +197,19 @@ const PROJECTS = [
 ];
 
 const ABOUT = {
-  intro: "Sou designer de produto com experiência em pensar sistemas, não apenas telas. Gosto de projetos onde pesquisa, interface e conteúdo caminham juntos — e onde dá pra medir se o trabalho realmente ajudou alguém.\n\nNos últimos anos trabalhei em produtos B2B e B2C, sempre próxima de times de produto e engenharia, cuidando do processo do início ao fim.",
-  softwares: ["Figma", "Framer", "Notion", "Principle", "Illustrator"],
+  intro: "Designer de São Paulo, formado pelo Centro Universitário Senac, com foco em UX/UI Design, produtos digitais e design gráfico. Tenho experiência com projetos de pesquisa, criação de interfaces, identidade visual, tipografia e desenvolvimento de soluções com foco em comunicação e experiência do usuário.  Meus trabalhos também são influenciados pela cultura pop, explorando referências visuais, narrativas e elementos da cultura contemporânea para criar experiências e soluções com personalidade.",
+  softwares: ["Figma", "Adobe Illustrator", "Notion", "Adobe Photoshop", "Adobe InDesign", "Adobe After Effects", "Fontra"],
   skills: [
-    "Design de produto", "Design system", "Prototipagem",
-    "Pesquisa com usuários", "UX writing", "Design de interação",
-    "Facilitação de workshops", "Handoff para dev",
+    "UX/UI", "Design Editorial", "Branding",
+    "Design System", "Prototipagem", "Comunicação",
+    "Adaptabilidade", "Criatividade", "Curiosidade"
   ],
   experience: [
-    { period: "2024 — atual", role: "Product Designer", org: "Nome da empresa" },
-    { period: "2022 — 2024", role: "Product Designer", org: "Nome da empresa" },
+    { period: "jan/2025 — jun/2026", role: "Estagiário - Experiência do Usuário", org: "Getnet" },
+    { period: "mai/2023 — dez/2024", role: "Jovem Aprendiz - Proteção de Dados e GCN", org: "Getnet" },
   ],
   education: [
-    { period: "2020 — 2022", role: "Design de Produto", org: "Nome da instituição" },
-    { period: "2016 — 2020", role: "Design Gráfico", org: "Nome da instituição" },
+    { period: "fev/2023 — jun/2026", role: "Bacharelado em Design", org: "Centro Universitário Senac" },
+    { period: "jan/2020 — jun/2022", role: "Design Gráfico", org: "Escola SAGA" },
   ],
 };
