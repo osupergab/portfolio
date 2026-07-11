@@ -567,23 +567,89 @@ nav.primary-nav a.active::after {
 /* ============================================================
    Responsive
    ============================================================ */
+
+/* Tablet / laptop — reduce side gutter so content keeps breathing room */
+@media (max-width: 1080px) {
+  :root { --gutter: 48px; }
+}
+
+/* Sidebar collapses to a top bar; project/about become single column */
 @media (max-width: 860px) {
   .shell { flex-direction: column; }
   .sidebar {
-    position: relative;
+    position: sticky;
+    top: 0;
+    z-index: 20;
     height: auto;
     width: 100%;
-    padding: 32px 24px;
+    padding: 20px 24px;
     display: flex;
     align-items: center;
     gap: 24px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
   }
-  .logo { margin-bottom: 0; }
-  nav.primary-nav { flex-direction: row; gap: 20px; }
-  .main { padding: 32px 24px 80px; }
-  .project-body { flex-direction: column; }
-  .phase-nav { flex-direction: row; position: static; width: auto; gap: 20px; }
-  .about-top { flex-direction: column; }
+  .logo { width: 40px; height: 40px; margin-bottom: 0; }
+  nav.primary-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+  }
+  nav.primary-nav a.active::after { display: none; }
+
+  .main { padding: 32px var(--gutter) 80px; }
+
+  .project-body { flex-direction: column; gap: 20px; }
+  .phase-nav {
+    flex-direction: row;
+    position: sticky;
+    top: 65px;
+    z-index: 10;
+    width: auto;
+    gap: 18px;
+    background: var(--paper);
+    padding: 10px 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .phase-nav::-webkit-scrollbar { display: none; }
+  .phase-nav a { white-space: nowrap; }
+  .project-sections { max-width: none; }
+  .phase-section { scroll-margin-top: 130px; }
+  .phase-book { flex-direction: column; gap: 24px; }
+
+  .about-top { flex-direction: column; gap: 24px; }
+  .about-copy p { max-width: none; }
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
+
   .contact-row { grid-template-columns: 70px 1fr; }
+  .contact-row .arrow { display: none; }
+}
+
+/* Large phones */
+@media (max-width: 600px) {
+  .intro-block { margin-bottom: 44px; }
+  .intro-block h1 { font-size: 26px; }
+  .work-grid { gap: 40px 24px; }
+  .project-header h1 { font-size: 27px; }
+  .phase-section { margin-bottom: 56px; }
+  .poster-item { height: 200px; }
+  .timeline-item { grid-template-columns: 92px 1fr; gap: 14px; }
+  .about-copy h1 { font-size: 22px; }
+}
+
+/* Small phones */
+@media (max-width: 420px) {
+  :root { --gutter: 18px; }
+  body { font-size: 14px; }
+  .sidebar { padding: 16px 18px; gap: 16px; }
+  nav.primary-nav { gap: 10px 16px; }
+  .intro-block h1 { font-size: 23px; }
+  .project-header h1 { font-size: 23px; }
+  .poster-item { height: 170px; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .download-btn { width: 100%; justify-content: center; }
+  .timeline-item { grid-template-columns: 1fr; gap: 4px; }
+  .timeline-item .period { padding-top: 0; }
 }
