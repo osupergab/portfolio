@@ -50,6 +50,10 @@
 
     document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("about-name").textContent = `${SITE.name}, ${SITE.role}.`;
+
+      if (ABOUT.photo) {
+        document.getElementById("about-photo").innerHTML = `<img src="${ABOUT.photo}" alt="${SITE.name}">`;
+      }
       document.getElementById("about-intro").innerHTML = ABOUT.intro.split("\n\n").map(p => `<p>${p}</p>`).join("");
 
       document.getElementById("software-row").innerHTML = ABOUT.softwares.map(s => `

@@ -197,6 +197,7 @@ const PROJECTS = [
 ];
 
 const ABOUT = {
+  photo: "assets/perfil.jpg",
   intro: "Designer de São Paulo, formado pelo Centro Universitário Senac, com foco em UX/UI Design, produtos digitais e design gráfico. Tenho experiência com projetos de pesquisa, criação de interfaces, identidade visual, tipografia e desenvolvimento de soluções com foco em comunicação e experiência do usuário.  Meus trabalhos também são influenciados pela cultura pop, explorando referências visuais, narrativas e elementos da cultura contemporânea para criar experiências e soluções com personalidade.",
   softwares: [
     { name: "Figma", icon: "assets/figma.png" },
