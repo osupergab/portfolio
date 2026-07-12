@@ -198,7 +198,15 @@ const PROJECTS = [
 
 const ABOUT = {
   intro: "Designer de São Paulo, formado pelo Centro Universitário Senac, com foco em UX/UI Design, produtos digitais e design gráfico. Tenho experiência com projetos de pesquisa, criação de interfaces, identidade visual, tipografia e desenvolvimento de soluções com foco em comunicação e experiência do usuário.  Meus trabalhos também são influenciados pela cultura pop, explorando referências visuais, narrativas e elementos da cultura contemporânea para criar experiências e soluções com personalidade.",
-  softwares: ["Figma", "Adobe Illustrator", "Notion", "Adobe Photoshop", "Adobe InDesign", "Adobe After Effects", "Fontra"],
+  softwares: [
+    { name: "Figma", icon: "assets/figma.png" },
+    { name: "Adobe Illustrator", icon: "assets/illustrator.png" },
+    { name: "Notion", icon: "assets/notion.png" },
+    { name: "Adobe Photoshop", icon: "assets/photoshop.png" },
+    { name: "Adobe InDesign", icon: "assets/indesign.png" },
+    { name: "Adobe After Effects", icon: "assets/after-effects.png" },
+    { name: "Fontra", icon: "assets/fontra.png" },
+  ],
   skills: [
     "UX/UI", "Design Editorial", "Branding",
     "Design System", "Prototipagem", "Comunicação",

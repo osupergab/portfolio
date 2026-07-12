@@ -54,7 +54,7 @@
       document.getElementById("about-intro").innerHTML = ABOUT.intro.split("\n\n").map(p => `<p>${p}</p>`).join("");
 
       document.getElementById("software-row").innerHTML = ABOUT.softwares.map(s => `
-        <div class="software-chip" title="${s}"></div>
+        <div class="software-chip" title="${s.name}"><img src="${s.icon}" alt="${s.name}"></div>
       `).join("");
 
       document.getElementById("skills-grid").innerHTML = ABOUT.skills.map(s => `
