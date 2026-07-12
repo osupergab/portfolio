@@ -275,7 +275,7 @@ nav.primary-nav a.active::after {
 .phase-nav a.active,
 .phase-nav a:hover { color: var(--ink); }
 
-.project-sections { flex: 1; max-width: var(--content-max); }
+.project-sections { flex: 1; min-width: 0; max-width: var(--content-max); }
 
 .downloads {
   display: flex;
@@ -361,6 +361,7 @@ nav.primary-nav a.active::after {
 .poster-carousel {
   position: relative;
   width: 100%;
+  max-width: 100%;
   margin-top: 8px;
   margin-bottom: 8px;
   overflow: hidden;
@@ -599,7 +600,7 @@ nav.primary-nav a.active::after {
 
   .main { padding: 32px var(--gutter) 80px; }
 
-  .project-body { flex-direction: column; gap: 20px; }
+  .project-body { flex-direction: column; align-items: stretch; gap: 20px; }
   .phase-nav {
     flex-direction: row;
     position: sticky;
@@ -619,7 +620,7 @@ nav.primary-nav a.active::after {
   .phase-section { scroll-margin-top: 130px; }
   .phase-book { flex-direction: column; gap: 24px; }
 
-  .about-top { flex-direction: column; gap: 24px; }
+  .about-top { flex-direction: column; align-items: stretch; gap: 24px; }
   .about-copy p { max-width: none; }
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
 
