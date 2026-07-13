@@ -14,37 +14,6 @@ const SITE = {
 
 const PROJECTS = [
   {
-    slug: "marca-pessoal",
-    client: "Projeto pessoal",
-    year: "2025",
-    title: "Marca pessoal",
-    cover: "assets/marca-pessoal-cover.jpg",
-    intro: "Desenvolvimento da identidade visual e marca pessoal como estratégia de consolidação profissional e diferenciação no mercado de design.",
-    phases: [
-      {
-        id: "conceito",
-        label: "conceito",
-        heading: "Conceito",
-        text: "A marca pessoal surge da necessidade de criar uma identidade visual única que representasse meus valores como designer: simplicidade, elegância e funcionalidade. O projeto explora a interseção entre design gráfico e design digital, buscando uma presença forte e coerente.",
-        layout: "single",
-      },
-      {
-        id: "desenvolvimento",
-        label: "desenvolvimento",
-        heading: "Desenvolvimento",
-        text: "Através de pesquisa de referências, tipografia cuidadosa e seleção de cores, construí uma marca que funciona tanto em contextos visuais quanto digitais. O processo incluiu refinamentos iterativos para garantir que a identidade funcionasse em diferentes escalas e aplicações.",
-        layout: "single",
-      },
-      {
-        id: "resultado",
-        label: "resultado",
-        heading: "Resultado",
-        text: "A marca pessoal foi desenvolvida com elementos dinâmicos e interativos, criando uma experiência visual envolvente que reflete minha proposta de design: criatividade, precisão e inovação.",
-        layout: "single",
-      },
-    ],
-  },
-  {
     slug: "projeto-01",
     client: "TCC",
     year: "2026",
@@ -72,14 +41,14 @@ const PROJECTS = [
         id: "contexto",
         label: "contexto",
         heading: "Contexto",
-        text: "Este projeto é um Trabalho de Conclusão de Curso desenvolvido em 2026 para o curso de Bacharelado em Design do Centro Universitário Senac. O projeto é a junção da pesquisa de [...]
+        text: "Este projeto é um Trabalho de Conclusão de Curso desenvolvido em 2026 para o curso de Bacharelado em Design do Centro Universitário Senac. O projeto é a junção da pesquisa de design tipográfico e expressão cultural para explorar o Pajubá como patrimônio linguístico e ferramenta de representação da cultura travesti brasileira. <br><br> <em><span class=\"text-highlight\">*Fonte e monografia completa do projeto disponíveis para download ao final da página.</em></span> <br><br> O Pajubá é um dialeto que surgiu a partir da convivência entre travestis, mulheres trans e outros grupos LGBTQIA+ no Brasil. Construído a partir de influências de línguas africanas, especialmente do iorubá, o Pajubá foi utilizado historicamente como uma ferramenta de comunicação, proteção e pertencimento, permitindo que essas pessoas compartilhassem informações e experiências em contextos marcados pela exclusão social e pela violência. Com o passar do tempo, muitas de suas expressões ultrapassaram os limites da comunidade e passaram a integrar o vocabulário popular brasileiro. Apesar de sua relevância histórica e cultural, o Pajubá ainda é pouco explorado pelo design como objeto de estudo e representação visual. Grande parte das pesquisas e registros sobre o tema concentra-se em aspectos linguísticos e sociológicos, enquanto suas possibilidades de tradução para a linguagem gráfica permanecem pouco investigadas. Dessa forma, existe uma oportunidade de utilizar o design, e principalmente a tipografia, como ferramenta para valorizar, preservar e ampliar a visibilidade desse patrimônio cultural. Foi a partir desse contexto que surgiu a Pajú Type. O projeto busca transformar conceitos como visibilidade, ocupação de espaços, resistência e afirmação identitária em linguagem tipográfica, estabelecendo uma ponte entre cultura, linguagem e design. Como resultado, foi desenvolvida uma tipografia autoral inspirada no universo do Pajubá e aplicada em uma coleção de dez cartazes.",
         layout: "single",
       },
       {
         id: "fase-2",
         label: "pesquisa",
         heading: "Pesquisa",
-        text: "Um dos principais direcionadores do estudo do Pajubá foi o <strong>Aurélia: A Dicionária da Língua Afiada</strong>, o primeiro registro lexicográfico do Pajubá, escrito pelo j[...]
+        text: "Um dos principais direcionadores do estudo do Pajubá foi o <strong>Aurélia: A Dicionária da Língua Afiada</strong>, o primeiro registro lexicográfico do Pajubá, escrito pelo jornalista Vitor Angelo e o pesquisador Fred Libi, com mais de 140 páginas de verbetes e expressões populares usadas dentro da comunidade LGBTQ+, incluindo o pajubá. <br><br> O principal ponto de análise é o mapeamento do pajubá não só como dialeto, mas como uma linguagem de resistência entre travestis e mulheres trans. Sua estrutura interseccional, que funde o português com raízes africanas (iorubá/nagô) e indígenas (tupi) reflete a solidariedade entre grupos marginalizados.",
         layout: "book",
         bookCover: "assets/aurélia.avif",
       },
@@ -89,19 +58,19 @@ const PROJECTS = [
         heading: "Experimentos",
         text: "",
         image: "assets/rascunhos.avif",
-        imageCaption: "Durante os rascunhos no papel, percebi que as versões condensadas produziam uma metáfora de que assim como a tipografia condensada ocupa espaços reduzidos, travestis hist[...]
+        imageCaption: "Durante os rascunhos no papel, percebi que as versões condensadas produziam uma metáfora de que assim como a tipografia condensada ocupa espaços reduzidos, travestis historicamente precisaram ocupar espaços que não haviam sido pensados para elas.",
         extraImages: [
           {
             image: "assets/experimentos-salto-navalha.webp",
-            caption: "Nestes experimentos digitais, trabalhei a tipografia usando itens associados às travestis, como o salto alto e a navalha. Na teoria, a ideia parecia boa, mas na prática, es[...]
+            caption: "Nestes experimentos digitais, trabalhei a tipografia usando itens associados às travestis, como o salto alto e a navalha. Na teoria, a ideia parecia boa, mas na prática, estava muito associada a uma cultura urbana da travesti, e o objetivo do projeto não era associar a travesti com a urbanidade.",
           },
           {
             image: "assets/rascunhos1.avif",
-            caption: "Ainda nos experimentos digitais, trabalhei com a criação de mais letras diferentes, usando principalmente o direcionamento de traços irregulares, tanto de forma sútil, qu[...]
+            caption: "Ainda nos experimentos digitais, trabalhei com a criação de mais letras diferentes, usando principalmente o direcionamento de traços irregulares, tanto de forma sútil, quanto de forma explicita.",
           },
           {
             image: "assets/rascunho2.avif",
-            caption: " Aqui, no experimento final, senti que a tipografia estava chegando perto do resultado esperado: traços retos representando resistência, variação de espessura representan[...]
+            caption: " Aqui, no experimento final, senti que a tipografia estava chegando perto do resultado esperado: traços retos representando resistência, variação de espessura representando tensão visual, tipos condensados e terminais pontiagudos inspirados no salto alto.",
           },
         ],
         layout: "single",
@@ -110,9 +79,9 @@ const PROJECTS = [
         id: "desenvolvimento",
         label: "desenvolvimento",
         heading: "Desenvolvimento",
-        text: "Depois de chegar em um resultado esperado nos experimentos, o último grupo de caracteres desenvolvidos passou por um refinamento no software Fontra, bem como a criação de alguns [...]
+        text: "Depois de chegar em um resultado esperado nos experimentos, o último grupo de caracteres desenvolvidos passou por um refinamento no software Fontra, bem como a criação de alguns caracteres especiais e variação de espessura.",
         image: "assets/fontra.avif",
-        imageCaption: "Por conta da direção do projeto, principalmente pelo fator da expressão de visibilidade, ficou subentendido que caracteres em caixa baixa não fazem sentido para o objeti[...]
+        imageCaption: "Por conta da direção do projeto, principalmente pelo fator da expressão de visibilidade, ficou subentendido que caracteres em caixa baixa não fazem sentido para o objetivo do projeto, por isso, apenas caracteres em caixa alta foram desenvolvidos.",
         extraImages: [
         ],
         layout: "single",
@@ -229,7 +198,7 @@ const PROJECTS = [
 
 const ABOUT = {
   photo: "assets/perfil.jpg",
-  intro: "Designer de São Paulo, formado pelo Centro Universitário Senac, com foco em UX/UI Design, produtos digitais e design gráfico. Tenho experiência com projetos de pesquisa, criação d[...]
+  intro: "Designer de São Paulo, formado pelo Centro Universitário Senac, com foco em UX/UI Design, produtos digitais e design gráfico. Tenho experiência com projetos de pesquisa, criação de interfaces, identidade visual, tipografia e desenvolvimento de soluções com foco em comunicação e experiência do usuário.  Meus trabalhos também são influenciados pela cultura pop, explorando referências visuais, narrativas e elementos da cultura contemporânea para criar experiências e soluções com personalidade.",
   softwares: [
     { name: "Figma", icon: "assets/figma.png" },
     { name: "Adobe Illustrator", icon: "assets/illustrator.png" },
