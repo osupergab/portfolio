@@ -356,6 +356,295 @@ nav.primary-nav a.active::after {
 }
 
 /* ============================================================
+   Marca Pessoal — interactive hero (mouse-reactive blobs)
+   ============================================================ */
+.mp-hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #17181A;
+  margin-bottom: 44px;
+  isolation: isolate;
+}
+
+.mp-blobs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.mp-blob {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--c);
+  opacity: 0.9;
+  filter: blur(6px);
+  transition: transform .18s ease-out;
+  will-change: transform;
+}
+
+.mp-header {
+  position: relative;
+  z-index: 1;
+  padding: 64px 48px;
+  margin: 0;
+}
+
+.mp-header .meta-line { color: rgba(255,255,255,0.7); }
+.mp-header h1 { color: #fff; }
+
+/* ============================================================
+   Marca Pessoal — value cards
+   ============================================================ */
+.value-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin: 4px 0 24px;
+}
+
+.value-card {
+  border: 2px solid var(--card-color);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+}
+
+.value-card-title {
+  margin: 0;
+  padding: 14px 18px;
+  background: var(--card-color);
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.value-card-text {
+  margin: 0;
+  padding: 14px 18px;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+/* ============================================================
+   Marca Pessoal — interactive color palette
+   ============================================================ */
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin: 4px 0 24px;
+}
+
+.swatch {
+  position: relative;
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  font-family: var(--font-body);
+  background: none;
+}
+
+.swatch-fill {
+  display: block;
+  height: 120px;
+  background: var(--swatch);
+  transition: transform .2s ease;
+}
+
+.swatch:hover .swatch-fill { transform: scale(1.04); }
+
+.swatch-info {
+  display: block;
+  padding: 12px 14px;
+  text-align: left;
+  background: var(--paper-soft);
+}
+
+.swatch-hex {
+  display: block;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.swatch-rgb, .swatch-cmyk {
+  display: block;
+  font-size: 11px;
+  color: var(--ink-soft);
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height .2s ease, opacity .2s ease;
+}
+
+.swatch:hover .swatch-rgb,
+.swatch:hover .swatch-cmyk,
+.swatch:focus-visible .swatch-rgb,
+.swatch:focus-visible .swatch-cmyk {
+  max-height: 20px;
+  opacity: 1;
+}
+
+.swatch.copied::after {
+  content: "copiado!";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+
+/* ============================================================
+   Marca Pessoal — type specimens
+   ============================================================ */
+.specimens {
+  display: grid;
+  gap: 10px;
+  margin: 4px 0 24px;
+}
+
+.specimen {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  transition: background .18s ease, border-color .18s ease;
+}
+
+.specimen:hover {
+  background: var(--teal-wash);
+  border-color: var(--teal);
+}
+
+.specimen-sample {
+  font-size: 46px;
+  line-height: 1;
+  color: var(--ink);
+  transition: color .18s ease;
+}
+
+.specimen:hover .specimen-sample { color: var(--teal-deep); }
+
+.specimen-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+/* ============================================================
+   Mockups — products in one continuous line over a living band
+   ============================================================ */
+.mockup-strip {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #17181A;
+  height: 260px;
+  margin: 4px 0 24px;
+  isolation: isolate;
+}
+
+/* single continuous sliding typographic band */
+.mk-band {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 44%;
+  transform: translateY(-50%);
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("assets/marca-pattern.png");
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+  opacity: 0.9;
+  animation: mk-slide 24s linear infinite;
+}
+
+@keyframes mk-slide {
+  from { background-position: 0 0; }
+  to { background-position: -1047px 0; }
+}
+
+.mk-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 8px;
+  height: 100%;
+  padding: 0 12px;
+}
+
+.mk-item {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+/* rotating brand symbol behind a specific product */
+.mk-spin {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.mk-spin img {
+  width: 130px;
+  max-width: 80%;
+  opacity: 0.92;
+  animation: mk-rotate 20s linear infinite;
+}
+
+@keyframes mk-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.mk-obj {
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+  max-height: 82%;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 26px rgba(0,0,0,0.32));
+  transition: transform .25s ease;
+}
+
+.mk-item:hover .mk-obj { transform: scale(1.06) rotate(-1deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .mk-band,
+  .mk-spin img { animation: none; }
+}
+
+/* ============================================================
    Poster carousel — infinite sliding gallery
    ============================================================ */
 .poster-carousel {
@@ -627,6 +916,14 @@ nav.primary-nav a.active::after {
   .download-btn { justify-content: center; width: 100%; }
   .poster-track { gap: 14px; }
   .poster-item { height: 190px; }
+  .mp-header { padding: 40px 24px; }
+  .value-cards { grid-template-columns: 1fr; }
+  .palette-grid { grid-template-columns: repeat(2, 1fr); }
+  .mockup-strip { height: 150px; }
+  .mk-row { gap: 4px; padding: 0 6px; }
+  .mk-spin img { width: 80px; }
+  .specimen { padding: 14px 16px; }
+  .specimen-sample { font-size: 34px; }
   .about-top { gap: 28px; margin-bottom: 48px; }
   .about-photo { width: 132px; height: 132px; }
   .about-copy h1 { font-size: 24px; }
