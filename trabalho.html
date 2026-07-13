@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trabalho — [Seu Nome]</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Afacad:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,500;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -58,7 +58,51 @@
       </div>`;
     }
 
+    function valueCards(cards) {
+      if (!Array.isArray(cards) || !cards.length) return "";
+      return `<div class="value-cards">
+        ${cards.map(c => `
+          <div class="value-card" style="--card-color:${c.color}">
+            <p class="value-card-title">${c.title}</p>
+            <p class="value-card-text">${c.text}</p>
+          </div>
+        `).join("")}
+      </div>`;
+    }
+
+    function colorPalette(palette) {
+      if (!Array.isArray(palette) || !palette.length) return "";
+      return `<div class="palette-grid">
+        ${palette.map(c => `
+          <button type="button" class="swatch" style="--swatch:${c.hex}" data-hex="${c.hex}" title="Clique para copiar ${c.hex}">
+            <span class="swatch-fill"></span>
+            <span class="swatch-info">
+              <span class="swatch-hex">${c.hex}</span>
+              <span class="swatch-rgb">${c.rgb}</span>
+              <span class="swatch-cmyk">${c.cmyk}</span>
+            </span>
+          </button>
+        `).join("")}
+      </div>`;
+    }
+
+    function typeSpecimens(specimens) {
+      if (!Array.isArray(specimens) || !specimens.length) return "";
+      return `<div class="specimens">
+        ${specimens.map(s => `
+          <div class="specimen">
+            <span class="specimen-sample" style="font-family:${s.font}">${s.sample}</span>
+            <span class="specimen-name">${s.name}</span>
+          </div>
+        `).join("")}
+      </div>`;
+    }
+
     function phaseImages(phase, project) {
+      const hasCustom = (Array.isArray(phase.cards) && phase.cards.length)
+        || (Array.isArray(phase.palette) && phase.palette.length)
+        || (Array.isArray(phase.specimens) && phase.specimens.length);
+
       if (phase.image || (Array.isArray(phase.extraImages) && phase.extraImages.length)) {
         let html = "";
         if (phase.image) html += imageWithCaption(phase.image, phase.imageCaption);
@@ -71,6 +115,8 @@
       if (phase.id === "contexto" && project && project.gallery && project.gallery.length) {
         return posterCarousel(project);
       }
+
+      if (hasCustom) return "";
 
       if (phase.layout === "triple") {
         return `<div class="image-row">
@@ -97,6 +143,9 @@
       }
       return `
         ${ph.text ? `<p>${ph.text}</p>` : ""}
+        ${valueCards(ph.cards)}
+        ${colorPalette(ph.palette)}
+        ${typeSpecimens(ph.specimens)}
         ${ph.video ? phaseVideo(ph.video) : ""}
         ${phaseImages(ph, project)}
         ${ph.showGallery ? posterCarousel(project) : ""}
@@ -112,13 +161,25 @@
         return;
       }
 
+      const headerInner = `
+        <p class="meta-line">${project.client} | ${project.year}</p>
+        <h1>${project.title}</h1>
+      `;
+
+      const brandColors = ["#57CF00", "#00ADA9", "#7E3FE0", "#F2CB05", "#57CF00", "#7E3FE0"];
+      const header = project.interactive ? `
+        <div class="mp-hero" id="mp-hero">
+          <div class="mp-blobs" id="mp-blobs">
+            ${brandColors.map((c, i) => `<span class="mp-blob" data-depth="${(i % 3) + 1}" style="--c:${c}"></span>`).join("")}
+          </div>
+          <div class="project-header mp-header">${headerInner}</div>
+        </div>
+      ` : `<div class="project-header">${headerInner}</div>`;
+
       main.innerHTML = `
         <a class="back-link" href="index.html">&larr; voltar</a>
 
-        <div class="project-header">
-          <p class="meta-line">${project.client} | ${project.year}</p>
-          <h1>${project.title}</h1>
-        </div>
+        ${header}
 
         <div class="project-body">
           <nav class="phase-nav" id="phase-nav">
@@ -142,6 +203,48 @@
       `;
 
       setupScrollSpy(project.phases.map(ph => ph.id));
+      if (project.interactive) setupInteractive();
+    }
+
+    function setupInteractive() {
+      const hero = document.getElementById("mp-hero");
+      if (hero) {
+        const blobs = Array.from(hero.querySelectorAll(".mp-blob"));
+        const seeds = blobs.map((b, i) => ({
+          x: (i * 17 + 8) % 90,
+          y: (i * 29 + 12) % 70,
+          size: 90 + ((i * 47) % 120),
+          depth: Number(b.dataset.depth) || 1,
+        }));
+        blobs.forEach((b, i) => {
+          const s = seeds[i];
+          b.style.left = s.x + "%";
+          b.style.top = s.y + "%";
+          b.style.width = s.size + "px";
+          b.style.height = s.size + "px";
+        });
+        hero.addEventListener("pointermove", (e) => {
+          const r = hero.getBoundingClientRect();
+          const mx = (e.clientX - r.left) / r.width - 0.5;
+          const my = (e.clientY - r.top) / r.height - 0.5;
+          blobs.forEach((b, i) => {
+            const d = seeds[i].depth * 16;
+            b.style.transform = `translate(${mx * d}px, ${my * d}px)`;
+          });
+        });
+        hero.addEventListener("pointerleave", () => {
+          blobs.forEach(b => { b.style.transform = "translate(0,0)"; });
+        });
+      }
+
+      document.querySelectorAll(".swatch").forEach(sw => {
+        sw.addEventListener("click", () => {
+          const hex = sw.dataset.hex || "";
+          if (navigator.clipboard) navigator.clipboard.writeText(hex).catch(() => {});
+          sw.classList.add("copied");
+          setTimeout(() => sw.classList.remove("copied"), 900);
+        });
+      });
     }
 
     function setupScrollSpy(ids) {
