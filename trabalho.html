@@ -100,19 +100,15 @@
 
     function mockupGallery(mockups) {
       if (!Array.isArray(mockups) || !mockups.length) return "";
-      return `<div class="mockups">
-        ${mockups.map(m => {
-          const bg = m.bg === "spin"
-            ? `<span class="mk-bg mk-spin"><img src="assets/marca-notion.png" alt="" aria-hidden="true"></span>`
-            : `<span class="mk-bg mk-band" aria-hidden="true"></span>`;
-          return `<figure class="mockup" style="--mk-bg:${m.bgColor || "#17181A"}">
-            <div class="mockup-stage">
-              ${bg}
-              <img class="mk-obj" src="${m.image}" alt="${m.caption || ""}" loading="lazy">
-            </div>
-            ${m.caption ? `<figcaption>${m.caption}</figcaption>` : ""}
-          </figure>`;
-        }).join("")}
+      const items = mockups.map(m => `
+        <div class="mk-item">
+          ${m.spin ? `<span class="mk-spin"><img src="assets/marca-notion.png" alt="" aria-hidden="true"></span>` : ""}
+          <img class="mk-obj" src="${m.image}" alt="${m.caption || ""}" loading="lazy">
+        </div>
+      `).join("");
+      return `<div class="mockup-strip">
+        <span class="mk-band" aria-hidden="true"></span>
+        <div class="mk-row">${items}</div>
       </div>`;
     }
 

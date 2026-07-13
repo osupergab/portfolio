@@ -551,77 +551,75 @@ nav.primary-nav a.active::after {
 }
 
 /* ============================================================
-   Mockups — product shots over living backgrounds
+   Mockups — products in one continuous line over a living band
    ============================================================ */
-.mockups {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin: 4px 0 24px;
-}
-
-.mockup {
-  margin: 0;
-}
-
-.mockup:first-child { grid-column: 1 / -1; }
-
-.mockup-stage {
+.mockup-strip {
   position: relative;
   overflow: hidden;
   border-radius: 14px;
-  background: var(--mk-bg);
-  aspect-ratio: 4 / 3;
+  background: #17181A;
+  height: 260px;
+  margin: 4px 0 24px;
   isolation: isolate;
 }
 
-.mockup:first-child .mockup-stage { aspect-ratio: 16 / 7; }
-
-.mk-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-/* sliding typographic band */
-.mk-band::before,
-.mk-band::after {
-  content: "";
+/* single continuous sliding typographic band */
+.mk-band {
   position: absolute;
   top: 50%;
   left: 0;
-  width: 200%;
-  height: 46%;
+  right: 0;
+  height: 44%;
   transform: translateY(-50%);
+  z-index: 0;
+  pointer-events: none;
   background-image: url("assets/marca-pattern.png");
   background-repeat: repeat-x;
   background-size: auto 100%;
-  opacity: 0.85;
-  animation: mk-slide 18s linear infinite;
+  opacity: 0.9;
+  animation: mk-slide 24s linear infinite;
 }
-
-.mk-band::before { top: 30%; }
-.mk-band::after { top: 72%; animation-duration: 26s; animation-direction: reverse; opacity: 0.7; }
 
 @keyframes mk-slide {
   from { background-position: 0 0; }
   to { background-position: -1047px 0; }
 }
 
-/* rotating brand symbol */
-.mk-spin {
+.mk-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 8px;
+  height: 100%;
+  padding: 0 12px;
+}
+
+.mk-item {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 100%;
   display: grid;
   place-items: center;
 }
 
+/* rotating brand symbol behind a specific product */
+.mk-spin {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 0;
+  pointer-events: none;
+}
+
 .mk-spin img {
-  width: 62%;
-  max-width: 320px;
-  opacity: 0.9;
-  animation: mk-rotate 22s linear infinite;
-  mix-blend-mode: multiply;
+  width: 130px;
+  max-width: 80%;
+  opacity: 0.92;
+  animation: mk-rotate 20s linear infinite;
 }
 
 @keyframes mk-rotate {
@@ -632,26 +630,17 @@ nav.primary-nav a.active::after {
 .mk-obj {
   position: relative;
   z-index: 1;
-  display: block;
-  width: 82%;
-  max-height: 88%;
-  margin: auto;
+  max-width: 100%;
+  max-height: 82%;
   object-fit: contain;
-  filter: drop-shadow(0 14px 26px rgba(0,0,0,0.28));
+  filter: drop-shadow(0 14px 26px rgba(0,0,0,0.32));
   transition: transform .25s ease;
 }
 
-.mockup-stage:hover .mk-obj { transform: scale(1.04) rotate(-1deg); }
-
-.mockup figcaption {
-  margin-top: 10px;
-  font-size: 13px;
-  color: var(--ink-soft);
-}
+.mk-item:hover .mk-obj { transform: scale(1.06) rotate(-1deg); }
 
 @media (prefers-reduced-motion: reduce) {
-  .mk-band::before,
-  .mk-band::after,
+  .mk-band,
   .mk-spin img { animation: none; }
 }
 
@@ -930,8 +919,9 @@ nav.primary-nav a.active::after {
   .mp-header { padding: 40px 24px; }
   .value-cards { grid-template-columns: 1fr; }
   .palette-grid { grid-template-columns: repeat(2, 1fr); }
-  .mockups { grid-template-columns: 1fr; }
-  .mockup:first-child .mockup-stage { aspect-ratio: 4 / 3; }
+  .mockup-strip { height: 150px; }
+  .mk-row { gap: 4px; padding: 0 6px; }
+  .mk-spin img { width: 80px; }
   .specimen { padding: 14px 16px; }
   .specimen-sample { font-size: 34px; }
   .about-top { gap: 28px; margin-bottom: 48px; }
