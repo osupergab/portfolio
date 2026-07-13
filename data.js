@@ -173,11 +173,13 @@ const PROJECTS = [
         id: "aplicacoes",
         label: "aplicações",
         heading: "Aplicações",
-        text: "A identidade ganha vida em papelaria e brindes — cartões, ecobag, caneca, botton e boné — sempre com o padrão tipográfico e as cores da marca.",
-        extraImages: [
-          { image: "assets/marca-cartoes.jpg", caption: "Cartões de visita" },
-          { image: "assets/marca-tote.jpg", caption: "Ecobag" },
-          { image: "assets/marca-mockups.jpg", caption: "Caneca, botton e boné" },
+        text: "A identidade ganha vida em papelaria e brindes — cartões, ecobag, caneca, botton e boné — sempre com o padrão tipográfico e as cores da marca. Os fundos são vivos: a faixa tipográfica desliza e o símbolo gira.",
+        mockups: [
+          { image: "assets/marca-obj-cartao.png", caption: "Cartões de visita", bg: "band", bgColor: "#7E3FE0" },
+          { image: "assets/marca-obj-caneca.png", caption: "Caneca", bg: "spin", bgColor: "#F2CB05" },
+          { image: "assets/marca-obj-bag.png", caption: "Ecobag", bg: "band", bgColor: "#00ADA9" },
+          { image: "assets/marca-obj-pin.png", caption: "Botton", bg: "spin", bgColor: "#57CF00" },
+          { image: "assets/marca-obj-bone.png", caption: "Boné", bg: "band", bgColor: "#F2CB05" },
         ],
         layout: "single",
       },

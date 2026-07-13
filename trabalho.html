@@ -98,10 +98,29 @@
       </div>`;
     }
 
+    function mockupGallery(mockups) {
+      if (!Array.isArray(mockups) || !mockups.length) return "";
+      return `<div class="mockups">
+        ${mockups.map(m => {
+          const bg = m.bg === "spin"
+            ? `<span class="mk-bg mk-spin"><img src="assets/marca-notion.png" alt="" aria-hidden="true"></span>`
+            : `<span class="mk-bg mk-band" aria-hidden="true"></span>`;
+          return `<figure class="mockup" style="--mk-bg:${m.bgColor || "#17181A"}">
+            <div class="mockup-stage">
+              ${bg}
+              <img class="mk-obj" src="${m.image}" alt="${m.caption || ""}" loading="lazy">
+            </div>
+            ${m.caption ? `<figcaption>${m.caption}</figcaption>` : ""}
+          </figure>`;
+        }).join("")}
+      </div>`;
+    }
+
     function phaseImages(phase, project) {
       const hasCustom = (Array.isArray(phase.cards) && phase.cards.length)
         || (Array.isArray(phase.palette) && phase.palette.length)
-        || (Array.isArray(phase.specimens) && phase.specimens.length);
+        || (Array.isArray(phase.specimens) && phase.specimens.length)
+        || (Array.isArray(phase.mockups) && phase.mockups.length);
 
       if (phase.image || (Array.isArray(phase.extraImages) && phase.extraImages.length)) {
         let html = "";
@@ -146,6 +165,7 @@
         ${valueCards(ph.cards)}
         ${colorPalette(ph.palette)}
         ${typeSpecimens(ph.specimens)}
+        ${mockupGallery(ph.mockups)}
         ${ph.video ? phaseVideo(ph.video) : ""}
         ${phaseImages(ph, project)}
         ${ph.showGallery ? posterCarousel(project) : ""}
